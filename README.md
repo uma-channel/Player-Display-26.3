@@ -1,3 +1,5 @@
+English | [日本語](README_jp.md)
+
 # Player Display for 26.3
 
 Display any player skin using only a resource pack and display entities on 26.3.
