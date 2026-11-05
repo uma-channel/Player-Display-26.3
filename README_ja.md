@@ -1,3 +1,5 @@
+[English](README.md) | 日本語
+
 # Player Display for 26.3
 
 26.3において、リソースパックとDisplayエンティティのみを使用して任意のプレイヤースキンを表示します。
