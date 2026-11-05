@@ -4,6 +4,8 @@ English | [日本語](README_jp.md)
 
 Display any player skin using only a resource pack and display entities on 26.3.
 
+---
+
 ## Limitations
 
 - Use only with `item_display` entities.
