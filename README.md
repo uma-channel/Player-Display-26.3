@@ -1,6 +1,6 @@
-# Stable Player Display
+# Player Display for 26.3
 
-This repository contains models and shaders to display any player skin using only a resource pack and display entities.
+Display any player skin using only a resource pack and display entities on 26.3.
 
 ## Limitations
 
