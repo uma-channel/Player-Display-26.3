@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "description": "Stable Player Display (26.3 port)",
+    "min_format": 91,
+    "max_format": 199
+  }
+}

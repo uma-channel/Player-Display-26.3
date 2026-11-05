@@ -1,0 +1,73 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "cases": [
+      {
+        "when": "slim",
+        "model": {
+          "type": "minecraft:special",
+          "base": "animated_java:blueprint/player_display/slim/right_arm",
+          "model": {
+            "type": "minecraft:player_head"
+          },
+          "transformation": {
+            "translation": [
+              0.5,
+              0.0,
+              0.5
+            ],
+            "left_rotation": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "right_rotation": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:special",
+      "base": "animated_java:blueprint/player_display/right_arm",
+      "model": {
+        "type": "minecraft:player_head"
+      },
+      "transformation": {
+        "translation": [
+          0.5,
+          0.0,
+          0.5
+        ],
+        "left_rotation": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "right_rotation": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    }
+  }
+}
