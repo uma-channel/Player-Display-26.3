@@ -34,13 +34,18 @@ function pd:remove {id:"example"}
 
 > **_NOTE:_**  For split models, there are additional `right_forearm`, `left_forearm`, `lower_right_leg`, and `lower_left_leg` models.
 
-#### List of Data Available in `_`
+### List of Data Available in `_`
 - id
 > ID of player display.
 - name
 > MCID (Skin) of player display
 - slim
 > Whether to use slim model: True/False
+
+---
+
+### Slim Checker
+You can use [Slim Checker by NeAc](https://github.com/nea-c/SlimChecker) to determine whether a player's skin is slim.
 
 ---
 
