@@ -5,7 +5,7 @@
 - 26.3において、リソースパックとディスプレイエンティティのみを使用して任意のプレイヤースキンを表示します。
 - [bradleyq](https://github.com/bradleyq) 氏の [Stable Player Display](https://github.com/bradleyq/stable_player_display) からフォークされています。
 
-## Limitations
+## 注意
 
 - `item_display` エンティティでのみ使用してください。
 - モデル内のいかなるボーンについても、**Rotation[1] NBT（ピッチ）を変更しないでください**。
@@ -13,21 +13,21 @@
 - アニメーションに `transformation.translation[1]` を使用する場合は、必要なYオフセットを引いてください（AJを使用している場合、スクリプトがこれを自動処理します）。
 - **Minecraft バニラ**の更新にのみ対応します。Modクライアント環境で動作が破損した場合のサポートはありません。
 
-## Usage (Sample Datapack)
+## 使い方 (サンプルデータパック)
 
 `pd: _` にデータを設定し、ファンクションを実行してください！
 
-### Display Settings
+### 設定
 ```
 data modify storage pd: _ set value {id:"example",name:"Steve",slim:false}
 ```
 
-### Summon Player Display
+### 召喚
 ```
 function #pd:
 ```
 
-### Remove Player Display
+### 削除
 ```
 function pd:remove {id:"example"}
 ```
