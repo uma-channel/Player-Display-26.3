@@ -13,7 +13,7 @@ English | [日本語](README_jp.md)
 - If using `transformation.translation[1]` for animations, subtract the required y-offset (if you are using AJ, the script handles this).
 - Will only be updated for **Minecraft Vanilla**, if it breaks in a modded client, you are out of luck.
 
-## Usage [Sample Datapack](PlayerDisplay [DP] sample)
+## Usage [Sample Datapack]("PlayerDisplay [DP] sample")
 
 Set data in `pd: _` and run the function!
 
