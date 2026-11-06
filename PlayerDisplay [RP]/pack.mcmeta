@@ -1,7 +1,22 @@
 {
   "pack": {
-    "description": "Stable Player Display (26.3 port)",
-    "min_format": 91,
-    "max_format": 199
+    "description": [
+      {
+        "text": "Player Display 26.3 [RP]",
+        "color": "red"
+      },
+      {
+        "text": "\nby UMA_ModCreator",
+        "color": "gray"
+      }
+    ],
+    "min_format": [
+      97,
+      0
+    ],
+    "max_format": [
+      97,
+      1
+    ]
   }
 }
