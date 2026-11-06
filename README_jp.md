@@ -2,7 +2,8 @@
 
 # Player Display for 26.3
 
-26.3において、リソースパックとDisplayエンティティのみを使用して任意のプレイヤースキンを表示します。
+- 26.3において、リソースパックとDisplayエンティティのみを使用して任意のプレイヤースキンを表示します。
+- これは[bradleyq](https://github.com/bradleyq)氏の[Stable Player Display](https://github.com/bradleyq/stable_player_display)のフォークです。
 
 ## 制限事項
 
