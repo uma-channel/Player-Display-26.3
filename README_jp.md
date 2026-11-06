@@ -45,7 +45,7 @@ function pd:remove {id:"example"}
 ---
 
 ### Slim Checker
-プレイヤーのスキンがスリムかどうかを判定するには、[NeAc 氏による Slim Checker](https://github.com/nea-c/SlimChecker) を使用できます。
+プレイヤーのスキンがスリムかどうかを判定するには、猫愛氏の[Slim Checker](https://github.com/nea-c/SlimChecker)を使用できます。
 
 ---
 
