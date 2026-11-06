@@ -15,7 +15,7 @@ English | [日本語](README_jp.md)
 
 ## Usage
 
-Set data in `e_motion: in` and run the function!
+Set data in `pd: _` and run the function!
 
 ### Display Settings
 ```
