@@ -45,7 +45,7 @@ function pd:remove {id:"example"}
 ---
 
 ### Slim Checker
-You can use [Slim Checker by NeAc](https://github.com/nea-c/SlimChecker) to determine whether a player's skin is slim.
+You can use [Slim Checker](https://github.com/uma-channel/Slim-Checker-26.3) to determine whether a player's skin is slim.
 
 ---
 
