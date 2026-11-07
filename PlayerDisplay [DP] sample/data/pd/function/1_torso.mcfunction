@@ -3,6 +3,6 @@ $data merge entity @s {Tags:["pd","pd_$(id)","pd_torso"],item_display:"thirdpers
 
 execute if data storage pd: _{slim:true} run item replace entity @s hotbar.0 with minecraft:player_head[minecraft:item_model="animated_java:blueprint/player_display/slim/torso"]
 
-execute if data storage pd: _{slim:false} run item replace entity @s hotbar.0 with minecraft:player_head[minecraft:item_model="animated_java:blueprint/player_display/torso"]
+execute unless data storage pd: _{slim:true} run item replace entity @s hotbar.0 with minecraft:player_head[minecraft:item_model="animated_java:blueprint/player_display/torso"]
 
 data modify entity @s item.components.minecraft:profile.name set from storage pd: _.name
