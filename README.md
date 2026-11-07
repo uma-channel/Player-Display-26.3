@@ -18,17 +18,17 @@ English | [日本語](README_jp.md)
 Set data in `pd: _` and run the function!
 
 ### Display Settings
-```
+```mcfunction
 data modify storage pd: _ set value {id:"example",name:"Steve",slim:false}
 ```
 
 ### Summon Player Display
-```
+```mcfunction
 function #pd:
 ```
 
 ### Remove Player Display
-```
+```mcfunction
 function pd:remove {id:"example"}
 ```
 
