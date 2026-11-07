@@ -36,11 +36,11 @@ function pd:remove {id:"example"}
 
 ### List of Data Available in `_`
 - id
-> プレイヤーディスプレイのID。
+> プレイヤーディスプレイのID。(必須)
 - name
-> プレイヤーディスプレイのMCID（スキン）。
+> プレイヤーディスプレイのMCID（スキン）。(任意)
 - slim
-> スリムモデルを使用するかどうか: True/False
+> スリムモデルを使用するかどうか: True/False (デフォルト: False)
 
 ---
 
