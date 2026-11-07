@@ -36,11 +36,11 @@ function pd:remove {id:"example"}
 
 ### List of Data Available in `_`
 - id
-> ID of player display.
+> ID of player display. (required)
 - name
-> MCID (Skin) of player display
+> MCID (Skin) of player display. (optional)
 - slim
-> Whether to use slim model: True/False
+> Whether to use slim model: True/False (Default to false)
 
 ---
 
