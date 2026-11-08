@@ -3,6 +3,9 @@ $data merge entity @s {Tags:["pd","pd_$(id)","pd_leg_r"],item_display:"thirdpers
 
 execute if data storage pd: _{slim:true} run item replace entity @s hotbar.0 with minecraft:player_head[minecraft:item_model="animated_java:blueprint/player_display/slim/right_leg"]
 
-execute if data storage pd: _{slim:false} run item replace entity @s hotbar.0 with minecraft:player_head[minecraft:item_model="animated_java:blueprint/player_display/right_leg"]
+execute unless data storage pd: _{slim:true} run item replace entity @s hotbar.0 with minecraft:player_head[minecraft:item_model="animated_java:blueprint/player_display/right_leg"]
+
+# Set Slim Model from Custom Model Data
+# execute if data storage pd: _{slim:true} run data modify entity @s item.components."minecraft:custom_model_data".strings set value ["slim"]
 
 data modify entity @s item.components.minecraft:profile.name set from storage pd: _.name
