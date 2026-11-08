@@ -5,6 +5,7 @@ execute summon item_display run function pd:1_forearm_r with storage pd: _
 execute summon item_display run function pd:1_arm_l with storage pd: _
 execute summon item_display run function pd:1_forearm_l with storage pd: _
 execute summon item_display run function pd:1_torso with storage pd: _
+execute summon item_display run function pd:1_waist with storage pd: _
 execute summon item_display run function pd:1_leg_r with storage pd: _
 execute summon item_display run function pd:1_lower_leg_r with storage pd: _
 execute summon item_display run function pd:1_leg_l with storage pd: _
