@@ -67,7 +67,7 @@ function pd:remove {id:"example"}
 
 **詳しくは[sample_datapack](sample_datapack)を覗いてください。** 
 
-#### Slim Checker 26.3
+## Slim Checker 26.3
 
 [Slim Checker](https://github.com/uma-channel/Slim-Checker-26.3) を使用してプレイヤーのスキンがスリムかどうかをチェックできます。
 
