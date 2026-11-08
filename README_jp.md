@@ -57,13 +57,13 @@ function pd:remove {id:"example"}
 
 #### `_`に入れられる設定
 - id
-> ID of player display. (required)
+> プレイヤーディスプレイのID。(必須)
 - name
-> MCID (Skin) of player display. (optional)
+> プレイヤーディスプレイに使うMCID(スキン)。(任意)
 - slim
-> Whether to use slim model: True/False (Default to false)
+> スリムモデルを使うかどうか: True/False (デフォルトはfalse)
 - split
-> Whether to use slim model: True/False (Default to false) 
+> 分割モデルを使うかどうか: True/False (デフォルトはfalse) 
 
 **詳しくは[sample_datapack](sample_datapack)を覗いてください。** 
 
