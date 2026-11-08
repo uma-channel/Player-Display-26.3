@@ -1,4 +1,4 @@
-English | [日本語](README_ja.md)
+English | [日本語](README_jp.md)
 
 # (Stable) Player Display 26.3
 
