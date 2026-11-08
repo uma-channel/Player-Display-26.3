@@ -1,7 +1,22 @@
 {
   "pack": {
-    "description": "Stable Player Display sample datapack (26.3)",
-    "min_format": 121,
-    "max_format": 121
+    "description": [
+      {
+        "text": "Player Display 26.3 [DP] sample",
+        "color": "red"
+      },
+      {
+        "text": "\nby UMA_ModCreator",
+        "color": "gray"
+      }
+    ],
+    "min_format": [
+      97,
+      0
+    ],
+    "max_format": [
+      97,
+      1
+    ]
   }
 }
