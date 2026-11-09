@@ -3,6 +3,7 @@ English | [日本語](README_jp.md)
 # (Stable) Player Display 26.3
 
 This is a port of [bradleyq/stable_player_display](https://github.com/bradleyq/stable_player_display) to **Minecraft JE 26.3**, based on [erkko68's AJ-compatible fork 1.4.1](https://github.com/erkko68/stable_player_display).
+
 It supports exports from Animated Java (AJ) 1.11.
 
 # Verification Status
