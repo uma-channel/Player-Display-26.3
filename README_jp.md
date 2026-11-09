@@ -20,7 +20,7 @@ Animated Java (AJ) 1.11 の書き出しに対応しています。
 | `resourcepack_split/` | リソースパック (分割モデル: ひじ・腰・ひざ付き) |
 | `animated-java-resources/aj-convert.py` | AJ 書き出しデータパックの変換スクリプト |
 | `animated-java-resources/player.ajblueprint` / `player_split.ajblueprint` | AJ 用ブループリント (書き出し先を 26.3 に設定済み) |
-| `animated-java-resources/sample_datapack/` | スキン更新用のルートテーブルと関数 |
+| `sample_datapack/` | サンプルデータパック |
 | `animated-java-resources/tests/` | `aj-convert.py` のテスト |
 | `tools/` | 移植に使ったビルドスクリプトとシェーダーのテスト |
 
