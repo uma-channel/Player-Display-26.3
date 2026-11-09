@@ -19,7 +19,7 @@ It supports exports from Animated Java (AJ) 1.11.
 | `resourcepack_split/` | Resource pack (Split model: includes elbows, waist, knees) |
 | `animated-java-resources/aj-convert.py` | Conversion script for AJ exported datapacks |
 | `animated-java-resources/player.ajblueprint` / `player_split.ajblueprint` | AJ blueprints (Preset export target set to 26.3) |
-| `animated-java-resources/sample_datapack/` | Loot tables and functions for skin updating |
+| `sample_datapack/` | Functions for player display example |
 | `animated-java-resources/tests/` | Tests for `aj-convert.py` |
 | `tools/` | Build scripts and shader tests used during porting |
 
