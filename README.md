@@ -148,4 +148,4 @@ Please note that response or resolution is not guaranteed.
 - **Resonance#3633**: Custom Models and Templates
 - **[sireroo](https://github.com/sireroo)**: Inspiration
 
-For further details, please refer to [LICENSE](LICENSE).
+See [LICENSE](LICENSE) for more details.
