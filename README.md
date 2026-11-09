@@ -55,7 +55,7 @@ function #pd:
 function pd:remove {id:"example"}
 ```
 
-#### Available parameters in `_`
+## Available parameters in `_`
 - id
 > The ID for the player display. (Required)
 - name
