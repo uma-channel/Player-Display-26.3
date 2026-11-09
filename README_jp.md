@@ -56,7 +56,7 @@ function #pd:
 function pd:remove {id:"example"}
 ```
 
-#### `_`に入れられる設定
+## `_`に入れられる設定
 - id
 > プレイヤーディスプレイのID。(必須)
 - name
