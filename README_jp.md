@@ -4,6 +4,7 @@
 
 [bradleyq/stable_player_display](https://github.com/bradleyq/stable_player_display) を、
 [erkko68 の AJ 対応フォーク 1.4.1](https://github.com/erkko68/stable_player_display) を土台に **Minecraft JE 26.3** へ移植したものです。
+
 Animated Java (AJ) 1.11 の書き出しに対応しています。
 
 # 動作確認状況
