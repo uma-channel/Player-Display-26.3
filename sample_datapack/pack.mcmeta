@@ -1,5 +1,6 @@
 {
   "pack": {
+    "pack_format": 121,
     "description": [
       {
         "text": "Player Display 26.3 [DP] sample",
@@ -11,12 +12,12 @@
       }
     ],
     "min_format": [
-      97,
+      121,
       0
     ],
     "max_format": [
-      97,
-      1
+      121,
+      0
     ]
   }
 }

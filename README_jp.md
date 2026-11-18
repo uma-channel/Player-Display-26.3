@@ -2,25 +2,38 @@
 
 # (Stable) Player Display 26.3
 
+![player_anim](assets/player_anim.gif)
+
 [bradleyq/stable_player_display](https://github.com/bradleyq/stable_player_display) を、
 [erkko68 の AJ 対応フォーク 1.4.1](https://github.com/erkko68/stable_player_display) を土台に **Minecraft JE 26.3** へ移植したものです。
 
 Animated Java (AJ) 1.11 の書き出しに対応しています。
 
+# 変更
+
+参考: [@nugget-prophet](https://github.com/nugget-prophet)
+
+- スキンUVの付け替えを、頂点番号を使う `entity.vsh` での頂点ごとの処理から、元の頭のUVを使う `entity.fsh` でのピクセルごとの処理に変更。頂点の並びに依存しなくなり、カメラの角度によって伸びる問題が解消されます。
+- 付け替えた部位のエンチャントのきらめき・ディゾルブ演出は、付け替え後のスキンUVを使います。
+- 付け替えた部位の完全に透明なピクセルは捨て、外層のフェードは外層だけに適用します。
+- 分割モデルの部位番号も同じシェーダーで処理します (部位オフセットの表を参照)。
+- ゲーム内での確認はしていません。UVの計算のみ、従来の頂点ごとの結果とスクリプトで照合しています。
+
+- **破壊的変更:** 旧 `resourcepack_split` の上半分 (right_arm … left_leg) のオフセットが変わりました。旧版で書き出して変換したデータは、再書き出し・再変換が必要です。
+
 # 動作確認状況
 
-- Minecraft JE 26.3 にて [sample datapack](sample_datapack) 及び [resourcepack](resourcepack) 、 [resourcepack_split](resourcepack_split) の動作確認済み。
+- Minecraft JE 26.3 にて [sample datapack](sample_datapack) 及び [resourcepack](resourcepack) (通常モデル・分割モデル) の動作確認済み。
 - AJ は テスト用のツールでのみ動作確認済み。
 
 ## 同梱物
 
 | パス | 内容 |
 |---|---|
-| `resourcepack/` | リソースパック (通常モデル) |
-| `resourcepack_split/` | リソースパック (分割モデル: ひじ・腰・ひざ付き) |
+| `resourcepack/` | リソースパック (通常モデル + 分割モデル: ひじ・腰・ひざ付き。`item_model` のパスで使い分け) |
 | `animated-java-resources/aj-convert.py` | AJ 書き出しデータパックの変換スクリプト |
 | `animated-java-resources/player.ajblueprint` / `player_split.ajblueprint` | AJ 用ブループリント (書き出し先を 26.3 に設定済み) |
-| `sample_datapack/` | PlayerDisplay召喚用function |
+| `sample_datapack/` | プレイヤーディスプレイの召喚/削除用データパック |
 | `animated-java-resources/tests/` | `aj-convert.py` のテスト |
 | `tools/` | 移植に使ったビルドスクリプトとシェーダーのテスト |
 
@@ -35,7 +48,7 @@ Animated Java (AJ) 1.11 の書き出しに対応しています。
 
 ## リソースパック導入
 
-`resourcepack` か `resourcepack_split` の**どちらか一方**をリソースパックとして有効にします (両方は不可)。
+`resourcepack` をリソースパックとして有効にします。
 
 ## 使い方
 
@@ -56,7 +69,7 @@ function #pd:
 function pd:remove {id:"example"}
 ```
 
-## `_`に入れられる設定
+#### `_`に入れられる設定
 - id
 > プレイヤーディスプレイのID。(必須)
 - name
@@ -64,7 +77,7 @@ function pd:remove {id:"example"}
 - slim
 > スリムモデルを使うかどうか: True/False (デフォルトはfalse)
 - split
-> 分割モデルを使うかどうか: True/False (デフォルトはfalse) 
+> 分割モデルを使うかどうか: True/False (デフォルトはfalse)。
 
 **詳しくは[sample_datapack](sample_datapack)を覗いてください。** 
 
@@ -103,23 +116,25 @@ function pd:remove {id:"example"}
 
 ## 部位オフセット
 
-| 部位 | Y オフセット |
-|---|---|
-| head | 0 |
-| right_arm | -1024 |
-| left_arm | -2048 |
-| torso | -3072 |
-| right_leg | -4096 |
-| left_leg | -5120 |
-| right_forearm (分割) | -6144 |
-| left_forearm (分割) | -7168 |
-| waist (分割) | -8192 |
-| lower_right_leg (分割) | -9216 |
-| lower_left_leg (分割) | -10240 |
+| 部位 | Y オフセット (通常) | Y オフセット (分割) |
+|---|---|---|
+| head | 0 | 0 |
+| right_arm | -1024 | -11264 |
+| left_arm | -2048 | -12288 |
+| torso | -3072 | -13312 |
+| right_leg | -4096 | -14336 |
+| left_leg | -5120 | -15360 |
+| right_forearm | - | -6144 |
+| left_forearm | - | -7168 |
+| waist | - | -8192 |
+| lower_right_leg | - | -9216 |
+| lower_left_leg | - | -10240 |
 
 ## 分割モデル
 
-腕・脚に関節を足し、腰を独立させたモデルです。`resourcepack_split` と `player_split.ajblueprint`、`aj-convert.py -split` を**セットで**使います。
+腕・脚に関節を足し、腰を独立させたモデルです。`player_split.ajblueprint` と `aj-convert.py -split` を**セットで**使います。
+
+**破壊的変更:** 旧 `resourcepack_split` の上半分 (right_arm … left_leg) のオフセットが上表のとおり変わりました。旧版で書き出して変換したデータは、再書き出し・再変換が必要です。
 
 ## AJ 1.11 のバリアントについて
 
@@ -147,5 +162,6 @@ AJ のバージョン、使ったコマンドやオプション、ログ全文�
 - **[erkko68](https://github.com/erkko68/stable_player_display)**: AJ 対応フォーク
 - **Resonance#3633**: カスタムモデルとテンプレート
 - **[sireroo](https://github.com/sireroo)**: 着想
+- **[nugget-prophet](https://github.com/nugget-prophet)**: 修正案
 
 詳細については [LICENSE](LICENSE) を参照してください。

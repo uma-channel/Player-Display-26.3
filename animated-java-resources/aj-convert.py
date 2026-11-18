@@ -18,7 +18,7 @@ Animated Java (AJ) 1.11 以降が書き出したデータパックを、SPD 用�
 
   [blueprint_id]   AJ の Blueprint ID (既定の名前空間は aj)。"player_display" だけでも可。
   -pn=NAME         スキンを借りるプレイヤー名 (既定: なし)
-  -split           分割モデル (ひじ・腰・ひざ付き) のオフセットを使う
+  -split           分割モデル (ひじ・腰・ひざ付き) のオフセットを使い、item_model を .../split/<ボーン名> にする
   --dry-run        ファイルを書き換えず、何が変わるかだけ表示する
   --force          変換済みの印があっても実行する (二重適用に注意)
   --tag-prefix P   タグの接頭辞を直接指定 (既定: Blueprint ID の ':' と '/' を '.' にしたもの)
@@ -42,11 +42,14 @@ DEFAULT_OFFSETS = {
     "head": 0, "right_arm": -1024, "left_arm": -2048,
     "torso": -3072, "right_leg": -4096, "left_leg": -5120,
 }
+# 分割モデルは、通常モデルと同じリソースパックに同居する。通常と区別するため、
+# 上半分 (right_arm / left_arm / torso / right_leg / left_leg) は 11〜15 番の枠を使い、
+# item_model も .../split/<ボーン名> になる (head は 0 のまま)。
 SPLIT_OFFSETS = {
-    "head": 0, "right_arm": -1024, "right_forearm": -6144,
-    "left_arm": -2048, "left_forearm": -7168, "torso": -3072,
-    "waist": -8192, "right_leg": -4096, "lower_right_leg": -9216,
-    "left_leg": -5120, "lower_left_leg": -10240,
+    "head": 0, "right_arm": -11264, "right_forearm": -6144,
+    "left_arm": -12288, "left_forearm": -7168, "torso": -13312,
+    "waist": -8192, "right_leg": -14336, "lower_right_leg": -9216,
+    "left_leg": -15360, "lower_left_leg": -10240,
 }
 ITEM_DISPLAY = "thirdperson_righthand"
 PLAYER_NAME_RE = re.compile(r"^[A-Za-z0-9_]{1,16}$")
@@ -165,7 +168,7 @@ def shift_matrix_in(text, offset):
 
 
 # --------------------------------------------------------------------------- summon の Passengers
-def edit_passenger(p, name, offset, player_name):
+def edit_passenger(p, name, offset, player_name, split=False):
     """Passenger 1 体分の SNBT を書き換える。"""
     # (1) transformation の translation の Y (複合タグ形式) か、行列形式の添字 7
     mc = re.search(r"transformation\s*:\s*\{", p)
@@ -212,10 +215,13 @@ def edit_passenger(p, name, offset, player_name):
             item = item[:q] + prof + ("" if empty else ",") + item[q:]
         else:
             item = item[:-1] + ",components:{%s}}" % prof
+    if split:
+        # 分割モデル: item_model を .../<ボーン名> から .../split/<ボーン名> に付け替える
+        item = re.sub(r'("minecraft:item_model"\s*:\s*"[^"]*?/)(%s")' % re.escape(name), r"\1split/\2", item)
     return p[:o] + item + p[c + 1:]
 
 
-def convert_summon_line(line, prefix, offsets, player_name):
+def convert_summon_line(line, prefix, offsets, player_name, split=False):
     """summon minecraft:item_display ... Passengers:[...] の行を書き換える。(新line, 変更したボーン名のリスト)"""
     mp = re.search(r"Passengers\s*:\s*\[", line)
     if not mp:
@@ -239,7 +245,7 @@ def convert_summon_line(line, prefix, offsets, player_name):
         if name is None or name not in offsets:
             continue
         out.append(line[last:start])
-        out.append(edit_passenger(p, name, offsets[name], player_name))
+        out.append(edit_passenger(p, name, offsets[name], player_name, split))
         last = end
         changed.append(name)
     out.append(line[last:])
@@ -284,12 +290,12 @@ def convert_storage_line(line, offsets):
 
 
 # --------------------------------------------------------------------------- ファイル走査
-def convert_text(text, prefix, offsets, player_name, stats, where):
+def convert_text(text, prefix, offsets, player_name, stats, where, split=False):
     out = []
     for line in text.splitlines(keepends=True):
         s = line.lstrip()
         if s.startswith("summon minecraft:item_display") and "Passengers" in line:
-            new, names = convert_summon_line(line, prefix, offsets, player_name)
+            new, names = convert_summon_line(line, prefix, offsets, player_name, split)
             stats["summon_bones"] += len(names)
             if names:
                 stats["summon_lines"] += 1
@@ -370,7 +376,7 @@ def run(args):
             with open(path, "r", encoding="utf-8", newline="") as fh:
                 text = fh.read()
             try:
-                new = convert_text(text, prefix, offsets, args.player_name, stats, path)
+                new = convert_text(text, prefix, offsets, args.player_name, stats, path, bool(args.split))
             except ConvertError as e:
                 raise ConvertError("%s: %s" % (os.path.relpath(path, root), e))
             if new != text:

@@ -2,24 +2,37 @@ English | [日本語](README_jp.md)
 
 # (Stable) Player Display 26.3
 
+![player_anim](assets/player_anim.gif)
+
 This is a port of [bradleyq/stable_player_display](https://github.com/bradleyq/stable_player_display) to **Minecraft JE 26.3**, based on [erkko68's AJ-compatible fork 1.4.1](https://github.com/erkko68/stable_player_display).
 
 It supports exports from Animated Java (AJ) 1.11.
 
+# Changes
+
+Thanks to [@nugget-prophet](https://github.com/nugget-prophet)
+
+- Skin UV mapping is now done per pixel in `entity.fsh` from the original head UV, instead of per vertex in `entity.vsh` using the vertex number. It no longer depends on vertex order, which fixes stretching at some camera angles.
+- Enchantment glint and the dissolve effect on mapped parts use the mapped skin UV.
+- Fully transparent pixels on mapped parts are discarded, and the outer-layer fade applies to the outer layer only.
+- The split model's part numbers are handled in the same shader (see Part Offsets).
+- Not verified in game. Only the UV calculation was checked by a script against the previous per-vertex result.
+
+- **Breaking change:** the former `resourcepack_split` offsets for the upper half (right_arm … left_leg) changed. Data exported and converted with the old version must be re-exported and converted again.
+
 # Verification Status
 
-- Verified working in Minecraft JE 26.3 with the [sample datapack](sample_datapack), [resourcepack](resourcepack), and [resourcepack_split](resourcepack_split).
+- Verified working in Minecraft JE 26.3 with the [sample datapack](sample_datapack) and [resourcepack](resourcepack) (standard and split models).
 - AJ has been verified only with testing tools.
 
 ## Included Files
 
 | Path | Description |
 |---|---|
-| `resourcepack/` | Resource pack (Standard model) |
-| `resourcepack_split/` | Resource pack (Split model: includes elbows, waist, knees) |
+| `resourcepack/` | Resourcepack |
 | `animated-java-resources/aj-convert.py` | Conversion script for AJ exported datapacks |
 | `animated-java-resources/player.ajblueprint` / `player_split.ajblueprint` | AJ blueprints (Preset export target set to 26.3) |
-| `sample_datapack/` | Functions for player display example |
+| `sample_datapack/` | Datapack for spawning/removing player displays |
 | `animated-java-resources/tests/` | Tests for `aj-convert.py` |
 | `tools/` | Build scripts and shader tests used during porting |
 
@@ -34,7 +47,7 @@ It supports exports from Animated Java (AJ) 1.11.
 
 ## Resource Pack Installation
 
-Enable **either** `resourcepack` or `resourcepack_split` as your resource pack (do not enable both).
+Enable `resourcepack` as your resource pack.
 
 ## How to Use
 
@@ -55,7 +68,7 @@ function #pd:
 function pd:remove {id:"example"}
 ```
 
-## Available parameters in `_`
+#### Available parameters in `_`
 - id
 > The ID for the player display. (Required)
 - name
@@ -63,7 +76,7 @@ function pd:remove {id:"example"}
 - slim
 > Whether to use the slim model: True/False (Default: false)
 - split
-> Whether to use the split model: True/False (Default: false)
+> Whether to use the split model: True/False (Default: false). 
 
 **For details, please check the [sample_datapack](sample_datapack).**
 
@@ -103,23 +116,25 @@ Like the original SPD, plugin mode script conversion is unsupported. On the side
 
 ## Part Offsets
 
-| Part | Y Offset |
-|---|---|
-| head | 0 |
-| right_arm | -1024 |
-| left_arm | -2048 |
-| torso | -3072 |
-| right_leg | -4096 |
-| left_leg | -5120 |
-| right_forearm (Split) | -6144 |
-| left_forearm (Split) | -7168 |
-| waist (Split) | -8192 |
-| lower_right_leg (Split) | -9216 |
-| lower_left_leg (Split) | -10240 |
+| Part | Y Offset (Standard) | Y Offset (Split) |
+|---|---|---|
+| head | 0 | 0 |
+| right_arm | -1024 | -11264 |
+| left_arm | -2048 | -12288 |
+| torso | -3072 | -13312 |
+| right_leg | -4096 | -14336 |
+| left_leg | -5120 | -15360 |
+| right_forearm | - | -6144 |
+| left_forearm | - | -7168 |
+| waist | - | -8192 |
+| lower_right_leg | - | -9216 |
+| lower_left_leg | - | -10240 |
 
 ## Split Model
 
-A model with added arm and leg joints and an independent waist. Use `resourcepack_split`, `player_split.ajblueprint`, and `aj-convert.py -split` **together as a set**.
+A model with added arm and leg joints and an independent waist. Use `player_split.ajblueprint` and `aj-convert.py -split` **together as a set**.
+
+**Breaking change:** the former `resourcepack_split` offsets for the upper half (right_arm … left_leg) changed as shown above. Data exported and converted with the old version must be re-exported and converted again.
 
 ## About AJ 1.11 Variants
 
@@ -147,5 +162,6 @@ Please note that response or resolution is not guaranteed.
 - **[erkko68](https://github.com/erkko68/stable_player_display)**: AJ-compatible Fork Author
 - **Resonance#3633**: Custom Models and Templates
 - **[sireroo](https://github.com/sireroo)**: Inspiration
+- **[nugget-prophet](https://github.com/nugget-prophet)**: Revision
 
-See [LICENSE](LICENSE) for more details.
+For further details, please refer to [LICENSE](LICENSE).

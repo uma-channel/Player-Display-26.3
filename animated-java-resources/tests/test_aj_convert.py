@@ -224,6 +224,11 @@ class ConvertTests(unittest.TestCase):
         s = after["data/aj/function/player_display/summon.mcfunction"]
         self.assertEqual(s.count('item_display:"thirdperson_righthand"'), 11)
         self.assertIn("-10240.0f", s)
+        self.assertIn("-15360.0f", s)
+        # item_model は .../split/<ボーン名> になる (head も)
+        for name in bones:
+            self.assertIn('"minecraft:item_model":"aj:blueprint/player_display/split/%s"' % name, s)
+            self.assertNotIn('"minecraft:item_model":"aj:blueprint/player_display/%s"' % name, s)
 
     def test_dry_run_changes_nothing(self):
         before, after = self.run_convert("--dry-run", "-pn=jeb_")
