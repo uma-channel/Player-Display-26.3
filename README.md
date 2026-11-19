@@ -82,7 +82,7 @@ function pd:remove {id:"example"}
 
 ## Slim Checker 26.3
 
-You can check whether a player's skin is slim using [Slim Checker](https://github.com/uma-channel/Slim-Checker-26.3).
+You can check whether a player's skin is slim using [Slim Checker](https://github.com/uma-channel/Slim-Checker-Lite).
 
 ## Animated Java: Datapack
 
