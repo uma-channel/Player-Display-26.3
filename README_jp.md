@@ -83,7 +83,7 @@ function pd:remove {id:"example"}
 
 ## Slim Checker 26.3
 
-[Slim Checker](https://github.com/uma-channel/Slim-Checker-26.3) を使用してプレイヤーのスキンがスリムかどうかをチェックできます。
+[Slim Checker](https://github.com/uma-channel/Slim-Checker-Lite) を使用してプレイヤーのスキンがスリムかどうかをチェックできます。
 
 ## Animated Java: データパック
 
